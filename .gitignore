@@ -403,4 +403,38 @@ ASALocalRun/
 # BeatPulse healthcheck temp database
 healthchecksdb
 
+*.exe
+*.ipch
+*.sdf
+*.suo
+*.filters
+*.tlog
+*.obj
+*.res
+*.rc
+*.log
+*.pdb
+*.idb
+*.ilk
+*.lastbuildstate
+*.lib
+*.manifest
+*.exp
+*.zip
+*.opensdf
+*.user.*
+*.xcuserstate
+*.xcworkspace
+*.xcuserdata
+*.xcuserdatad
+*.orig
+*.unityPackage
+obj/
+BinariesX86/
+BinariesX64/
+XInputUnity4/Library/
+XInputUnity5/Library/
+XInputUnity5/Assets/AssetStoreTools*
+Temp/
+
 # End of https://www.gitignore.io/api/c++,windows,visualstudio
