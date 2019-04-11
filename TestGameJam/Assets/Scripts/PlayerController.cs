@@ -140,7 +140,7 @@ public class PlayerController : MonoBehaviour
             // calculate force
             float fForce = m_baseKnockbackForce + (m_knockbackForce * (m_fDamagePercent / 100f));
             // apply force
-            m_rigidbody.AddExplosionForce(fForce, collision.transform.position, 10f);
+            m_rigidbody.AddExplosionForce(fForce, collision.contacts[0].point, 10f);
             m_fDamagePercent += fForce * m_forceToDamageFactor; // add damage
         }
     }
