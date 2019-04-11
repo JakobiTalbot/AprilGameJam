@@ -152,6 +152,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 4
       objectReference: {fileID: 0}
+    - target: {fileID: 114715935529983748, guid: 389f2204952188d4d98a24f9a404685e,
+        type: 2}
+      propertyPath: m_punchDistance.z
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 389f2204952188d4d98a24f9a404685e, type: 2}
   m_IsPrefabAsset: 0
