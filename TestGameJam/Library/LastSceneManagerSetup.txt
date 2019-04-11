@@ -1,4 +1,4 @@
 sceneSetups:
-- path: Assets/Scenes/JAKOBIInputTest.unity
+- path: Assets/Scenes/TestEventsScene.unity
   isLoaded: 1
   isActive: 1
