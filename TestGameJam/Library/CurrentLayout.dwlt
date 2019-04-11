@@ -13,7 +13,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   m_PixelRect:
     serializedVersion: 2
-    x: -1920
+    x: 0
     y: 43
     width: 1920
     height: 997
@@ -45,7 +45,11 @@ MonoBehaviour:
   m_MinSize: {x: 683, y: 492}
   m_MaxSize: {x: 14004, y: 14042}
   vertical: 0
+<<<<<<< HEAD
   controlID: 39
+=======
+  controlID: 26
+>>>>>>> master
 --- !u!114 &3
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -210,7 +214,11 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 492}
   m_MaxSize: {x: 10002, y: 14042}
   vertical: 1
+<<<<<<< HEAD
   controlID: 40
+=======
+  controlID: 27
+>>>>>>> master
 --- !u!114 &10
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -234,7 +242,11 @@ MonoBehaviour:
   m_MinSize: {x: 406, y: 221}
   m_MaxSize: {x: 8006, y: 4021}
   vertical: 0
+<<<<<<< HEAD
   controlID: 41
+=======
+  controlID: 28
+>>>>>>> master
 --- !u!114 &11
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -337,7 +349,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -1920
+    x: 0
     y: 763
     width: 1583
     height: 255
@@ -354,6 +366,7 @@ MonoBehaviour:
     m_ShowAllHits: 0
     m_SearchArea: 1
     m_Folders:
+<<<<<<< HEAD
     - Assets/Scenes
   m_ViewMode: 1
   m_StartGridSize: 64
@@ -368,6 +381,22 @@ MonoBehaviour:
     m_SelectedIDs: f62a0000
     m_LastClickedID: 10998
     m_ExpandedIDs: 00000000202a0000422a0000422c000000ca9a3b
+=======
+    - Assets/Materials
+  m_ViewMode: 1
+  m_StartGridSize: 64
+  m_LastFolders:
+  - Assets/Materials
+  m_LastFoldersGridSize: -1
+  m_LastProjectPath: C:\Users\s173004\Desktop\GitKraken\AprilGameJam\TestGameJam
+  m_LockTracker:
+    m_IsLocked: 0
+  m_FolderTreeState:
+    scrollPos: {x: 0, y: 6}
+    m_SelectedIDs: c22c0000
+    m_LastClickedID: 11458
+    m_ExpandedIDs: 000000002a2c00003e2e000000ca9a3b
+>>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -395,7 +424,11 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
+<<<<<<< HEAD
     m_ExpandedIDs: 00000000202a0000422a0000422c0000
+=======
+    m_ExpandedIDs: 000000002a2c00003e2e0000
+>>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -470,7 +503,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -333
+    x: 1587
     y: 92
     width: 333
     height: 926
@@ -504,16 +537,22 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -1920
+    x: 0
     y: 92
     width: 290
     height: 650
   m_PersistentViewDataDictionary: {fileID: 0}
   m_TreeViewState:
     scrollPos: {x: 0, y: 0}
+<<<<<<< HEAD
     m_SelectedIDs: 202d0000
     m_LastClickedID: 11552
     m_ExpandedIDs: dcfbffff00000000
+=======
+    m_SelectedIDs: 022f0000
+    m_LastClickedID: 12034
+    m_ExpandedIDs: e2f8ffff00000000
+>>>>>>> master
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -532,7 +571,11 @@ MonoBehaviour:
       m_ClientGUIView: {fileID: 4}
     m_SearchString: 
   m_ExpandedScenes:
+<<<<<<< HEAD
   - TestSceneAfridi
+=======
+  - TestEventsScene
+>>>>>>> master
   m_CurrenRootInstanceID: 0
   m_LockTracker:
     m_IsLocked: 0
@@ -557,7 +600,7 @@ MonoBehaviour:
     m_Tooltip: 
   m_Pos:
     serializedVersion: 2
-    x: -1626
+    x: 294
     y: 92
     width: 1289
     height: 650
@@ -600,7 +643,11 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.008685084, y: 0.034486957, z: 0.00029994562, w: 0.99936736}
     speed: 2
+<<<<<<< HEAD
     m_Value: {x: 0.008685084, y: -0.034486957, z: -0.00029994562, w: -0.99936736}
+=======
+    m_Value: {x: -0.0063753244, y: 0.98653954, z: -0.15850845, w: -0.03967939}
+>>>>>>> master
   m_Size:
     m_Target: 13.88214
     speed: 2

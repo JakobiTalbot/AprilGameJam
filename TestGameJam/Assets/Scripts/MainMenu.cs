@@ -6,10 +6,17 @@ using UnityEngine.SceneManagement;
 
 public class MainMenu : MonoBehaviour
 {
+    public Button startButton;
+
+    private void Awake()
+    {
+        startButton.Select();
+    }
+
     public void StartButton()
     {
         // load game scene
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene(2);
     }
 
     public void QuitButton()
