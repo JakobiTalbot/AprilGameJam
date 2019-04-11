@@ -466,10 +466,12 @@ MonoBehaviour:
   m_thumbstickDeadzone: 0.15
   m_punchCooldownTime: 0.2
   m_punchDistance: 2
-  m_punchSpeed: 0.2
+  m_startPunchSpeed: 0.1
+  m_slowdownWhenPunch: 0.2
   m_fists:
   - {fileID: 676132324}
   - {fileID: 2132455854}
+  m_bPunching: 0
 --- !u!54 &1442311205
 Rigidbody:
   m_ObjectHideFlags: 0

@@ -12,19 +12,24 @@ public class PlayerController : MonoBehaviour
     public float m_thumbstickDeadzone = 0.15f;
     public float m_punchCooldownTime = 0.2f;
     public float m_punchDistance = 1f;
-    public float m_punchSpeed = 0.5f;
+    public float m_startPunchSpeed = 0.1f;
+    public float m_punchSpeedOverTimeMultiplier = 2f;
     public float m_slowdownWhenPunch = 0.2f;
     public GameObject[] m_fists;
+
+    [HideInInspector]
+    public bool m_bPunching = false;
 
     private Rigidbody m_rigidbody;
     private Vector3[] m_fistStartPos;
     private float m_fCurrentPunchCooldown = 0f;
+    private float m_fCurrentPunchSpeed;
     private bool m_bUseRightFist = true;
-    private bool m_bPunching = false;
 
 	// Use this for initialization
 	void Start()
     {
+        m_fCurrentPunchSpeed = m_startPunchSpeed;
         m_rigidbody = GetComponent<Rigidbody>();
         m_fistStartPos = new Vector3[2];
         for (int i = 0; i < 2; i++)
@@ -64,7 +69,10 @@ public class PlayerController : MonoBehaviour
             && !m_bPunching)
         {
             m_bPunching = true;
-            m_rigidbody.velocity *= m_slowdownWhenPunch;
+            Vector3 v3NewVelocity = m_rigidbody.velocity;
+            v3NewVelocity.x *= m_slowdownWhenPunch;
+            v3NewVelocity.z *= m_slowdownWhenPunch;
+            m_rigidbody.velocity = v3NewVelocity;
         }
 
         // stop punch if function returns false
@@ -73,6 +81,7 @@ public class PlayerController : MonoBehaviour
         {
             m_bPunching = false; // stop punching
             m_fCurrentPunchCooldown = m_punchCooldownTime; // set cooldown
+            m_fCurrentPunchSpeed = m_startPunchSpeed;
             m_bUseRightFist = !m_bUseRightFist; // alternate fists
         }
 
@@ -94,7 +103,8 @@ public class PlayerController : MonoBehaviour
             // move fist
             Vector3 v3FistPos = m_fists[1].transform.localPosition;
             Vector3 v3PunchEndPos = m_fistStartPos[1] + new Vector3(0, 0, m_punchDistance);
-            v3FistPos = Vector3.Lerp(v3FistPos, v3PunchEndPos, m_punchSpeed);
+            v3FistPos = Vector3.Lerp(v3FistPos, v3PunchEndPos, m_fCurrentPunchSpeed);
+            m_fCurrentPunchSpeed += Time.deltaTime * m_punchSpeedOverTimeMultiplier;
             m_fists[1].transform.localPosition = v3FistPos;
             if (Vector3.Distance(v3FistPos, v3PunchEndPos) < 0.1f)
             {
@@ -109,7 +119,8 @@ public class PlayerController : MonoBehaviour
             // move fist
             Vector3 v3FistPos = m_fists[0].transform.localPosition;
             Vector3 v3PunchEndPos = m_fistStartPos[0] + new Vector3(0, 0, m_punchDistance);
-            v3FistPos = Vector3.Lerp(v3FistPos, v3PunchEndPos, m_punchSpeed);
+            v3FistPos = Vector3.Lerp(v3FistPos, v3PunchEndPos, m_fCurrentPunchSpeed);
+            m_fCurrentPunchSpeed += Time.deltaTime * m_punchSpeedOverTimeMultiplier;
             m_fists[0].transform.localPosition = v3FistPos;
             if (Vector3.Distance(v3FistPos, v3PunchEndPos) < 0.1f)
             {
