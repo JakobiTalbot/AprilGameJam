@@ -5,9 +5,10 @@ using XInputDotNetPure;
 
 public class PlayerController : MonoBehaviour
 {
-    public int m_playerNumber;
-    public float m_movementSpeed = 10;
+    public int m_playerNumber = 1;
+    public float m_movementSpeed = 10f;
     public float m_rotateSpeed = 0.5f;
+    public float m_jumpVelocity = 20f;
 
     private Rigidbody m_rigidbody;
 
@@ -27,6 +28,10 @@ public class PlayerController : MonoBehaviour
         Vector3 v3Velocity = m_rigidbody.velocity;
         v3Velocity.x += gamePadState.ThumbSticks.Left.X * m_movementSpeed * Time.deltaTime;
         v3Velocity.z += gamePadState.ThumbSticks.Left.Y * m_movementSpeed * Time.deltaTime;
+        // jump
+        if (gamePadState.Buttons.A == ButtonState.Pressed && Physics.Raycast(transform.position, Vector3.down, 0.5f))
+            v3Velocity.y = m_jumpVelocity;
+        // set new velocity
         m_rigidbody.velocity = v3Velocity;
 
         // look towards right stick input
