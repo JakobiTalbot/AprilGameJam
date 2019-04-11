@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using XInputDotNetPure;
 
@@ -19,6 +20,12 @@ public class PlayerController : MonoBehaviour
     public float m_knockbackForce = 3000f;
     public float m_forceToDamageFactor = 0.01f;
     public List<GameObject> m_fists;
+
+    //UI Stuff
+    public Text m_playerOnePercent;
+    public Text m_playerTwoPercent;
+    public GameObject m_player1;
+    public GameObject m_player2;
 
     [HideInInspector]
     public bool m_bPunching = false;
@@ -140,6 +147,17 @@ public class PlayerController : MonoBehaviour
             // calculate force
             float fForce = m_baseKnockbackForce + (m_knockbackForce * (m_fDamagePercent / 100f));
             // apply force
+
+            //Display Force on UI
+            if (m_player1.GetComponentInParent<PlayerController>().m_bPunching == true)
+            {
+                m_playerOnePercent.text = fForce.ToString();
+            }
+            if (m_player2.GetComponentInParent<PlayerController>().m_bPunching == true)
+            {
+                m_playerTwoPercent.text = fForce.ToString();
+            }
+
             m_rigidbody.AddExplosionForce(fForce, collision.transform.position, 10f);
             m_fDamagePercent += fForce * m_forceToDamageFactor; // add damage
         }
