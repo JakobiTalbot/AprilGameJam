@@ -15,19 +15,16 @@ public class PlayerController : MonoBehaviour
     public float m_startPunchSpeed = 0.1f;
     public float m_punchSpeedOverTimeMultiplier = 2f;
     public float m_slowdownWhenPunch = 0.2f;
-    public List<GameObject> m_fists;
+    public GameObject[] m_fists;
 
     [HideInInspector]
     public bool m_bPunching = false;
-    [HideInInspector]
-    public float m_fDamagePercent = 0f;
 
     private Rigidbody m_rigidbody;
     private Vector3[] m_fistStartPos;
     private float m_fCurrentPunchCooldown = 0f;
     private float m_fCurrentPunchSpeed;
-    // 0 = left, 1 = right
-    private int m_iFist = 0;
+    private bool m_bUseRightFist = true;
 
 	// Use this for initialization
 	void Start()
@@ -71,35 +68,24 @@ public class PlayerController : MonoBehaviour
             && m_fCurrentPunchCooldown <= 0f
             && !m_bPunching)
         {
-            // set punch to true
             m_bPunching = true;
-            // slow velocity when punch
             Vector3 v3NewVelocity = m_rigidbody.velocity;
             v3NewVelocity.x *= m_slowdownWhenPunch;
             v3NewVelocity.z *= m_slowdownWhenPunch;
             m_rigidbody.velocity = v3NewVelocity;
         }
 
-        // punch but stop punch if function returns false
+        // stop punch if function returns false
         if (m_bPunching
-            && !Punch(m_iFist))
+            && !Punch(m_bUseRightFist))
         {
             m_bPunching = false; // stop punching
             m_fCurrentPunchCooldown = m_punchCooldownTime; // set cooldown
             m_fCurrentPunchSpeed = m_startPunchSpeed;
-            // change fist index
-            switch (m_iFist)
-            {
-                case 0:
-                    m_iFist = 1;
-                    break;
-                case 1:
-                    m_iFist = 0;
-                    break;
-            }
+            m_bUseRightFist = !m_bUseRightFist; // alternate fists
         }
 
-        // decrement cooldown of punch if not punching
+        // decrement cooldown of punch
         if (!m_bPunching
             && m_fCurrentPunchCooldown > 0f)
         {
@@ -109,33 +95,40 @@ public class PlayerController : MonoBehaviour
 
     // returns false when punch has ended
     // otherwise returns true
-    private bool Punch(int iFist)
+    private bool Punch(bool bUseRightFist)
     {
-        // move fist
-        Vector3 v3FistPos = m_fists[iFist].transform.localPosition;
-        Vector3 v3PunchEndPos = m_fistStartPos[iFist] + new Vector3(0, 0, m_punchDistance);
-        v3FistPos = Vector3.Lerp(v3FistPos, v3PunchEndPos, m_fCurrentPunchSpeed);
-        m_fCurrentPunchSpeed += Time.deltaTime * m_punchSpeedOverTimeMultiplier;
-        m_fists[iFist].transform.localPosition = v3FistPos;
-
-        if (Vector3.Distance(v3FistPos, v3PunchEndPos) < 0.1f)
+        // punch with right fist
+        if (bUseRightFist)
         {
-            // reset position
-            m_fists[iFist].transform.localPosition = m_fistStartPos[iFist];
-            return false;
+            // move fist
+            Vector3 v3FistPos = m_fists[1].transform.localPosition;
+            Vector3 v3PunchEndPos = m_fistStartPos[1] + new Vector3(0, 0, m_punchDistance);
+            v3FistPos = Vector3.Lerp(v3FistPos, v3PunchEndPos, m_fCurrentPunchSpeed);
+            m_fCurrentPunchSpeed += Time.deltaTime * m_punchSpeedOverTimeMultiplier;
+            m_fists[1].transform.localPosition = v3FistPos;
+            if (Vector3.Distance(v3FistPos, v3PunchEndPos) < 0.1f)
+            {
+                // reset position
+                m_fists[1].transform.localPosition = m_fistStartPos[1];
+                return false;
+            }
         }
-
+        // punch with left fist
+        else
+        {
+            // move fist
+            Vector3 v3FistPos = m_fists[0].transform.localPosition;
+            Vector3 v3PunchEndPos = m_fistStartPos[0] + new Vector3(0, 0, m_punchDistance);
+            v3FistPos = Vector3.Lerp(v3FistPos, v3PunchEndPos, m_fCurrentPunchSpeed);
+            m_fCurrentPunchSpeed += Time.deltaTime * m_punchSpeedOverTimeMultiplier;
+            m_fists[0].transform.localPosition = v3FistPos;
+            if (Vector3.Distance(v3FistPos, v3PunchEndPos) < 0.1f)
+            {
+                // reset position
+                m_fists[0].transform.localPosition = m_fistStartPos[0];
+                return false;
+            }
+        }
         return true;
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        // if hit by punching enemy fist
-        if (collision.gameObject.CompareTag("Fist")
-            && collision.gameObject.GetComponentInParent<PlayerController>().m_bPunching
-            && !m_fists.Contains(collision.gameObject))
-        {
-
-        }
     }
 }
